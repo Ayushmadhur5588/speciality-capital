@@ -91,7 +91,7 @@ export function Header() {
             variant="outline"
             className="hidden md:inline-flex border-purple-200 text-purple-700 hover:bg-purple-50 bg-transparent"
           >
-            Partner Sign Up
+            Partner Sign Up 
           </Button>
           <Link href="/contact">
   <Button className="bg-[#4631b3] hover:bg-[#352690] text-white">
