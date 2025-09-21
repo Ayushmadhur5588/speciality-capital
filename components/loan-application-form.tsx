@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,13 +13,15 @@ export function LoanApplicationForm() {
   const [formData, setFormData] = useState({
     businessName: "",
     businessAddress: "",
-    owner: "",
     taxId: "",
     monthlyRevenue: "",
     requestedAmount: "",
     email: "",
     phone: "",
-    signedApplication: null as File | null,
+    salutation: "",
+    firstName: "",
+    lastName: "",
+    ownerSSN: "",
     bankStatements: null as File | null,
   })
 
@@ -35,7 +36,6 @@ export function LoanApplicationForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
-    // Handle form submission logic here
   }
 
   return (
@@ -73,60 +73,63 @@ export function LoanApplicationForm() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="businessName" className="text-foreground">
-                    Business Name / DBA *
-                  </Label>
+                  <Label htmlFor="businessName">Business Name / DBA *</Label>
                   <Input
                     id="businessName"
                     value={formData.businessName}
                     onChange={(e) => handleInputChange("businessName", e.target.value)}
                     placeholder="Enter your business name"
-                    className="bg-input border-border focus:ring-primary"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="taxId" className="text-foreground">
-                    Tax ID (EIN) *
-                  </Label>
+                  <Label htmlFor="taxId">Tax ID (EIN) *</Label>
                   <Input
                     id="taxId"
                     value={formData.taxId}
                     onChange={(e) => handleInputChange("taxId", e.target.value)}
                     placeholder="XX-XXXXXXX"
-                    className="bg-input border-border focus:ring-primary"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="businessAddress" className="text-foreground">
-                  Business Address *
-                </Label>
+                <Label htmlFor="businessAddress">Business Address *</Label>
                 <Textarea
                   id="businessAddress"
                   value={formData.businessAddress}
                   onChange={(e) => handleInputChange("businessAddress", e.target.value)}
                   placeholder="Enter complete business address"
-                  className="bg-input border-border focus:ring-primary min-h-[80px]"
                   required
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="owner" className="text-foreground">
-                  Business Owner / Primary Contact *
-                </Label>
-                <Input
-                  id="owner"
-                  value={formData.owner}
-                  onChange={(e) => handleInputChange("owner", e.target.value)}
-                  placeholder="Full name of business owner"
-                  className="bg-input border-border focus:ring-primary"
-                  required
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    placeholder="(555) 123-4567"
+                    required
+                  />
+                </div>
               </div>
             </div>
 
@@ -138,71 +141,87 @@ export function LoanApplicationForm() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="monthlyRevenue" className="text-foreground">
-                    Monthly Revenue *
-                  </Label>
+                  <Label htmlFor="monthlyRevenue">Monthly Revenue *</Label>
                   <Input
                     id="monthlyRevenue"
                     type="number"
                     value={formData.monthlyRevenue}
                     onChange={(e) => handleInputChange("monthlyRevenue", e.target.value)}
                     placeholder="0"
-                    className="bg-input border-border focus:ring-primary"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="requestedAmount" className="text-foreground">
-                    Requested Loan Amount *
-                  </Label>
+                  <Label htmlFor="requestedAmount">Requested Loan Amount *</Label>
                   <Input
                     id="requestedAmount"
                     type="number"
                     value={formData.requestedAmount}
                     onChange={(e) => handleInputChange("requestedAmount", e.target.value)}
                     placeholder="0"
-                    className="bg-input border-border focus:ring-primary"
                     required
                   />
                 </div>
               </div>
             </div>
 
-            {/* Contact Information Section */}
+            {/* Business Owner Details Section */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Contact Information</h3>
+              <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">
+                Business Owner Details
+              </h3>
+
+              <div className="space-y-2">
+                <Label htmlFor="salutation">Salutation *</Label>
+                <select
+                  id="salutation"
+                  value={formData.salutation}
+                  onChange={(e) => handleInputChange("salutation", e.target.value)}
+                  className="w-full border border-border rounded-md p-2 bg-input"
+                  required
+                >
+                  <option value="">-- None --</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Dr">Dr</option>
+                </select>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-foreground">
-                    Email Address *
-                  </Label>
+                  <Label htmlFor="firstName">First Name *</Label>
                   <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="your@email.com"
-                    className="bg-input border-border focus:ring-primary"
+                    id="firstName"
+                    value={formData.firstName}
+                    onChange={(e) => handleInputChange("firstName", e.target.value)}
+                    placeholder="First Name"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-foreground">
-                    Phone Number *
-                  </Label>
+                  <Label htmlFor="lastName">Last Name *</Label>
                   <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    placeholder="(555) 123-4567"
-                    className="bg-input border-border focus:ring-primary"
+                    id="lastName"
+                    value={formData.lastName}
+                    onChange={(e) => handleInputChange("lastName", e.target.value)}
+                    placeholder="Last Name"
                     required
                   />
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="ownerSSN">Owner SSN *</Label>
+                <Input
+                  id="ownerSSN"
+                  value={formData.ownerSSN}
+                  onChange={(e) => handleInputChange("ownerSSN", e.target.value)}
+                  placeholder="XXX-XX-XXXX"
+                  required
+                />
               </div>
             </div>
 
@@ -210,57 +229,29 @@ export function LoanApplicationForm() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Required Documents</h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-foreground">Signed Application *</Label>
-                  <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-colors">
-                    <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground mb-2">Click to upload or drag and drop</p>
-                    <input
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      onChange={(e) => handleFileChange("signedApplication", e.target.files?.[0] || null)}
-                      className="hidden"
-                      id="signedApplication"
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => document.getElementById("signedApplication")?.click()}
-                    >
-                      Choose File
-                    </Button>
-                    {formData.signedApplication && (
-                      <p className="text-xs text-primary mt-2">{formData.signedApplication.name}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-foreground">3 Months Bank Statements *</Label>
-                  <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-colors">
-                    <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground mb-2">Click to upload or drag and drop</p>
-                    <input
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      onChange={(e) => handleFileChange("bankStatements", e.target.files?.[0] || null)}
-                      className="hidden"
-                      id="bankStatements"
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => document.getElementById("bankStatements")?.click()}
-                    >
-                      Choose File
-                    </Button>
-                    {formData.bankStatements && (
-                      <p className="text-xs text-primary mt-2">{formData.bankStatements.name}</p>
-                    )}
-                  </div>
+              <div className="space-y-2">
+                <Label className="text-foreground">3 Months Bank Statements *</Label>
+                <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-colors">
+                  <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-sm text-muted-foreground mb-2">Click to upload or drag and drop</p>
+                  <input
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={(e) => handleFileChange("bankStatements", e.target.files?.[0] || null)}
+                    className="hidden"
+                    id="bankStatements"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => document.getElementById("bankStatements")?.click()}
+                  >
+                    Choose File
+                  </Button>
+                  {formData.bankStatements && (
+                    <p className="text-xs text-primary mt-2">{formData.bankStatements.name}</p>
+                  )}
                 </div>
               </div>
             </div>
