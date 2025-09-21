@@ -257,7 +257,7 @@ export function LoanApplicationForm() {
               <h3 className="text-lg font-semibold text-foreground border-b border-border pb-2">Required Documents</h3>
 
               <div className="space-y-2">
-                <Label className="text-foreground">3 Months Bank Statements *</Label>
+                <Label className="text-foreground">3 Months Bank Statement *</Label>
                 <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-colors">
                   <Upload className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
                   <p className="text-sm text-muted-foreground mb-2">Click to upload or drag and drop</p>
