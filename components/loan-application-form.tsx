@@ -58,7 +58,7 @@ export function LoanApplicationForm() {
 
       <Card className="shadow-lg border-border">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl text-foreground">Loan Application</CardTitle>
+          <CardTitle className="text-2xl text-foreground">Request Financing</CardTitle>
           <CardDescription className="text-muted-foreground">
             Please fill out all required fields to process your application
           </CardDescription>
@@ -208,6 +208,33 @@ export function LoanApplicationForm() {
                     value={formData.lastName}
                     onChange={(e) => handleInputChange("lastName", e.target.value)}
                     placeholder="Last Name"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Owner Email and Phone */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="ownerEmail">Email Address *</Label>
+                  <Input
+                    id="ownerEmail"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    placeholder="owner@email.com"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="ownerPhone">Phone Number *</Label>
+                  <Input
+                    id="ownerPhone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    placeholder="(555) 123-4567"
                     required
                   />
                 </div>
