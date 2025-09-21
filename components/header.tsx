@@ -11,8 +11,9 @@ const ChevronDown = () => (
 
 export function Header() {
   return (
-    <header className="bg-white border-b border-gray-100">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+    <header className="bg-white/1 border-b border-gray-100 backdrop-blur-md sticky top-0 z-50">
+  <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
         <div className="flex items-center">
           <Image
             src="/specialty-capital-logo.png"
@@ -23,7 +24,9 @@ export function Header() {
           />
         </div>
 
+        {/* Navigation */}
         <nav className="hidden lg:flex items-center gap-8">
+          {/* Products Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 text-gray-700 hover:text-gray-900 cursor-pointer transition-colors">
               <span>Products</span>
@@ -54,6 +57,7 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Company Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 text-gray-700 hover:text-gray-900 cursor-pointer transition-colors">
               <span>Company</span>
@@ -75,17 +79,13 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-            Resources
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-            Partners
-          </a>
-          <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
-            Why Specialty
-          </a>
+          {/* Other Links */}
+          <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">Resources</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">Partners</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900 transition-colors">Why Specialty</a>
         </nav>
 
+        {/* Buttons */}
         <div className="flex items-center gap-3">
           <Button
             variant="outline"
@@ -94,11 +94,10 @@ export function Header() {
             Partner Sign Up 
           </Button>
           <Link href="/contact">
-  <Button className="bg-[#4631b3] hover:bg-[#352690] text-white">
-    Get Started
-  </Button>
-</Link>
-
+            <Button className="bg-[#4631b3] hover:bg-[#352690] text-white">
+              Get Started
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
