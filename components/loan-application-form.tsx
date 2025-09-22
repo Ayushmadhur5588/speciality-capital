@@ -46,9 +46,11 @@ export function LoanApplicationForm() {
     setLoading(true)
 
     try {
-      // ✅ Step 1: Create Record
+     
       const recordResponse = await fetch(
         "https://bangmetricllcdemo2.service-now.com/api/bangm/speciality_captital/create_record",
+
+        
         {
           method: "POST",
           headers: {
@@ -78,7 +80,7 @@ export function LoanApplicationForm() {
 
       console.log("✅ Record created, sys_id:", sysId)
 
-      // ✅ Step 2: Upload attachment
+      
       const file = formData.bankStatements
       const fileUploadUrl = `https://bangmetricllcdemo2.service-now.com/api/now/attachment/file?table_name=x_bangm_business_f_funding_request&table_sys_id=${sysId}&file_name=${encodeURIComponent(file?.name || "BankStatement.pdf")}`
 
@@ -100,7 +102,7 @@ export function LoanApplicationForm() {
 
       alert("Application submitted successfully! Sys ID: " + sysId)
 
-      // Reset
+     
       setFormData({
         businessName: "",
         businessAddress: "",
