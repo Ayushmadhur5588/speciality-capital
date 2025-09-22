@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Upload, CheckCircle } from "lucide-react"
+import { Upload, Loader2, CheckCircle } from "lucide-react"
 
 export function LoanApplicationForm() {
   const [formData, setFormData] = useState({
@@ -121,9 +121,17 @@ export function LoanApplicationForm() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="relative max-w-2xl mx-auto">
+      {/* loading overlay */}
+      {loading && (
+        <div className="absolute inset-0 bg-white/80 flex flex-col items-center justify-center z-10 transition-opacity">
+          <Loader2 className="w-10 h-10 text-blue-500 animate-spin mb-4" />
+          <p className="text-lg font-medium">Submitting your application...</p>
+        </div>
+      )}
+
       {successData ? (
-        <Card className="shadow-lg border-border text-center p-10">
+        <Card className="shadow-lg border-border text-center p-10 transition-all duration-300">
           <CheckCircle className="mx-auto w-16 h-16 text-green-500 mb-4" />
           <CardTitle className="text-2xl mb-2">Application Submitted Successfully!</CardTitle>
           <CardDescription className="text-muted-foreground">
@@ -135,7 +143,7 @@ export function LoanApplicationForm() {
           </Button>
         </Card>
       ) : (
-        <Card className="shadow-lg border-border">
+        <Card className="shadow-lg border-border transition-all duration-300">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-foreground">Request Financing</CardTitle>
             <CardDescription className="text-muted-foreground">
@@ -216,7 +224,7 @@ export function LoanApplicationForm() {
               </div>
 
               <Button type="submit" disabled={loading} className="w-full">
-                {loading ? "Submitting..." : "Submit Application"}
+                Submit Application
               </Button>
             </form>
           </CardContent>
