@@ -136,7 +136,6 @@ export function LoanApplicationForm() {
           <CardTitle className="text-2xl mb-2">Application Submitted Successfully!</CardTitle>
           <CardDescription className="text-muted-foreground">
             Your Reference Number: <b>{successData.number}</b> <br />
-            (Sys ID: {successData.sysId})
           </CardDescription>
           <Button className="mt-6" onClick={() => setSuccessData(null)}>
             Submit Another Application
