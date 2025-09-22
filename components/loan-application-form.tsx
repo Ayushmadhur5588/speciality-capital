@@ -72,6 +72,8 @@ export function LoanApplicationForm() {
         }
       )
 
+
+
       if (!recordResponse.ok) throw new Error(`Error creating record: ${recordResponse.status}`)
 
       const recordResult = await recordResponse.json()
@@ -79,6 +81,7 @@ export function LoanApplicationForm() {
       if (!sysId) throw new Error("sys_id missing in response")
 
       console.log("✅ Record created, sys_id:", sysId)
+      console.log(recordResult);
 
       
       const file = formData.bankStatements
@@ -99,6 +102,7 @@ export function LoanApplicationForm() {
 
       const fileResult = await fileResponse.json()
       console.log("✅ File uploaded:", fileResult)
+      
 
       alert("Application submitted successfully! Sys ID: " + sysId)
 
@@ -136,7 +140,7 @@ export function LoanApplicationForm() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Business Info */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Business Name *</Label>
@@ -153,7 +157,7 @@ export function LoanApplicationForm() {
               <Textarea value={formData.businessAddress} onChange={(e) => handleInputChange("businessAddress", e.target.value)} required />
             </div>
 
-            {/* Contact */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Email *</Label>
@@ -165,7 +169,7 @@ export function LoanApplicationForm() {
               </div>
             </div>
 
-            {/* Finance */}
+        
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Monthly Revenue *</Label>
@@ -177,7 +181,7 @@ export function LoanApplicationForm() {
               </div>
             </div>
 
-            {/* Owner */}
+           
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>First Name *</Label>
@@ -194,7 +198,6 @@ export function LoanApplicationForm() {
               <Input value={formData.ownerSSN} onChange={(e) => handleInputChange("ownerSSN", e.target.value)} required />
             </div>
 
-            {/* File Upload */}
             <div>
               <Label>3 Months Bank Statement *</Label>
               <div className="border-2 border-dashed p-4 text-center rounded">
@@ -212,7 +215,6 @@ export function LoanApplicationForm() {
               </div>
             </div>
 
-            {/* Submit */}
             <Button type="submit" disabled={loading} className="w-full">
               {loading ? "Submitting..." : "Submit Application"}
             </Button>
