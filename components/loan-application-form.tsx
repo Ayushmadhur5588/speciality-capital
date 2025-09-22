@@ -82,6 +82,7 @@ export function LoanApplicationForm() {
 
       console.log("✅ Record created, sys_id:", sysId)
       console.log(recordResult);
+      console.log(recordResult.result?.reference_number);
 
       
       const file = formData.bankStatements
