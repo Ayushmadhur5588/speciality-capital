@@ -81,8 +81,11 @@ export function LoanApplicationForm() {
       if (!sysId) throw new Error("sys_id missing in response")
 
       console.log("✅ Record created, sys_id:", sysId)
-      console.log(recordResult);
-      console.log(recordResult.result?.reference_number);
+      const number = recordResult.result?.reference_number;
+      
+      if (!number) throw new Error("num missing in response")
+
+      console.log(number);
 
       
       const file = formData.bankStatements
