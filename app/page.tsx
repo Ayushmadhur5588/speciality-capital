@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      
 
       <section className="bg-gradient-to-br from-purple-50 to-white py-20">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -19,7 +19,7 @@ export default function Home() {
             </p>
           </div>
           <div className="max-w-4xl mx-auto">
-            <LoanApplicationForm />
+            <LoanApplicationFoam />
           </div>
         </div>
       </section>
